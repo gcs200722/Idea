@@ -1,0 +1,237 @@
+﻿@model IEnumerable<Idea.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "User Index";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+    </ol>
+</nav>
+
+<div class="text-center mt-4">
+    <a class="btn btn-create" asp-area="Identity" asp-page="/Account/Register">Create New</a>
+</div>
+
+<div class="row table-header mt-5">
+    <div class="col-4">Username</div>
+    <div class="col-4">Full Name</div>
+    <div class="mr-auto"></div>
+</div>
+
+<hr />
+
+@foreach (var item in Model)
+
+{
+    <div class="row table-row">
+        <div class="col-4">
+            <a asp-action="Details" asp-route-id="@item.Id">
+                @Html.DisplayFor(modelItem => item.UserName)
+            </a>
+        </div>
+
+        <div class="col-4">
+            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+        </div>
+
+        <div class="d-flex ml-auto pr-2 action-buttons">
+            <div class="mr-2">
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <span class='material-icons'>remove</span>
+                </a>
+            </div>
+
+            <div class="mr-2">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">
+                    <span class="material-icons">edit</span>
+                </a>
+            </div>
+
+            <div class="mr-2">
+                <a asp-action="AddRole" asp-route-id="@item.Id" class="btn btn-primary">
+                    <span class="material-icons">people_alt</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr />
+}
+
+
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(145deg, #6c5ce7, #00cec9);
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px 25px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(8px);
+    }
+
+    .breadcrumb-item a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+    }
+
+        .breadcrumb-item a:hover {
+            color: #00cec9;
+        }
+
+    .breadcrumb-item.active {
+        color: #333;
+    }
+
+    /* Button "Create New" */
+    .btn-create {
+        background: linear-gradient(45deg, #00cec9, #6c5ce7);
+        color: white;
+        padding: 14px 30px;
+        font-size: 1.1em;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .btn-create:hover {
+            background-color: #00cec9;
+            transform: translateY(-4px);
+        }
+
+    /* Table Header */
+    .font-weight-bold {
+        background: linear-gradient(145deg, #6c5ce7, #8e44ad);
+        color: white;
+        padding: 14px 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Table Row */
+    .row {
+        background: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .row:hover {
+            background-color: #f1f2f6;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Action Buttons */
+    .action-buttons .btn {
+        font-size: 1.3em;
+        padding: 8px 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .action-buttons .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Delete Button */
+    .btn-danger {
+        background-color: #e74c3c;
+        color: white;
+        border-radius: 50%;
+    }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+    /* Edit Button */
+    .btn-success {
+        background-color: #f39c12;
+        color: white;
+        border-radius: 50%;
+    }
+
+        .btn-success:hover {
+            background-color: #e67e22;
+        }
+
+    /* Add Role Button */
+    .btn-primary {
+        background-color: #3498db;
+        color: white;
+        border-radius: 50%;
+    }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+    /* Icon Size */
+    .material-icons {
+        font-size: 1.5em; /* Đồng nhất kích thước icon */
+    }
+
+    /* Table Header (Username, Full Name) */
+    .table-header {
+        background: linear-gradient(145deg, #6c5ce7, #8e44ad); /* Màu gradient của thanh tiêu đề */
+        color: white;
+        padding: 14px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    /* Table Row for Username and Full Name */
+    .table-row {
+        background: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between; /* Đảm bảo các cột xếp đều */
+        align-items: center; /* Canh giữa theo chiều dọc */
+    }
+
+        .table-row:hover {
+            background-color: #f1f2f6;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cột canh giữa */
+        .table-row .col-4 {
+            text-align: center;
+        }
+    
+
+
+</style>
+
+
+
+

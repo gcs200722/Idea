@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Idea.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<style>
+    /* Cơ bản cho body */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7fc;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Styling cho bảng */
+    .table {
+        width: 100%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .table:hover {
+            transform: scale(1.02); /* Hiệu ứng phóng to khi hover */
+        }
+
+        /* Tiêu đề bảng */
+        .table thead {
+            background: linear-gradient(135deg, #6c5ce7, #00cec9);
+            color: #ffffff;
+        }
+
+        .table th, .table td {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        .table th {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .table td {
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Styling cho các dòng trong bảng */
+        .table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+            .table tbody tr:nth-child(odd) {
+                background-color: #f9f9f9;
+            }
+
+            .table tbody tr:hover {
+                background-color: #e0e0e0;
+            }
+
+        /* Styling cho các liên kết trong bảng */
+        .table a {
+            color: #6c5ce7;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+            .table a:hover {
+                color: #00cec9;
+                text-decoration: underline;
+            }
+
+    /* Styling cho nút "Create New" */
+    .btn-create {
+        background-color: #00cec9;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1.1em;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .btn-create:hover {
+            background-color: #6c5ce7;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Hiệu ứng khi hover các nút sửa, chi tiết, xóa */
+    .table td a {
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 1em;
+        transition: all 0.3s ease;
+    }
+
+        .table td a:hover {
+            background-color: #6c5ce7;
+            color: #fff;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table td a:first-child {
+            background-color: #f39c12;
+        }
+
+        .table td a:nth-child(2) {
+            background-color: #2ecc71;
+        }
+
+        .table td a:last-child {
+            background-color: #e74c3c;
+        }
+</style>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

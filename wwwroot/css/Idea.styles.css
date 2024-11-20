@@ -1,0 +1,111 @@
+/* ??t l?i m?t s? thu?c tính c? b?n */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* T?ng th? */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Thi?t k? cho container chính */
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Header và Navbar */
+.navbar {
+    background-color: #2c3e50;
+}
+
+.navbar-brand img {
+    height: 60px;
+    width: auto;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #ecf0f1;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #f39c12;
+    }
+
+/* Dropdown trong Navbar */
+.navbar-toggler {
+    border-color: #ecf0f1;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28%255, %255, %255, 0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+    footer a {
+        color: #f39c12;
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+/* Nút và button */
+button,
+.btn {
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+    }
+
+/* Hi?u ?ng hover cho các th? */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+    a:hover {
+        color: #f39c12;
+    }
+
+/* Responsive cho màn hình nh? */
+@media (max-width: 576px) {
+    .navbar-brand img {
+        height: 45px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}

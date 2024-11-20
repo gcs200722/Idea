@@ -1,0 +1,39 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/*.container {
+    margin:0
+}*/
+/* Sửa lại padding và hover cho nav-link */
+/* Đảm bảo các nav-link có cùng chiều cao khi hover */
+.navbar-nav .nav-item .nav-link {
+    padding: 15px 20px; /* Đảm bảo padding đồng đều cho tất cả */
+    color: #000; /* Màu chữ mặc định */
+    display: flex;
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    transition: background-color 0.3s ease, color 0.3s ease, border-bottom 0.3s ease; /* Thêm hiệu ứng mượt mà */
+}
+
+    .navbar-nav .nav-item .nav-link:hover {
+        background-color: rgba(0, 123, 255, 0.1); /* Màu nền nhạt khi hover */
+        color: #007bff; /* Màu chữ khi hover */
+        border-bottom: 2px solid #007bff; /* Thêm viền dưới khi hover */
+        height: 100%; /* Đảm bảo chiều cao của phần tử nav-link đầy đủ khi hover */
+    }
+
+

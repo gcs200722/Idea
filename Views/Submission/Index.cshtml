@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Idea.Models.Submission>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deadline_1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deadline_2)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var bgColor = "bg-success";
+
+            if (item.Deadline_2 < DateTime.Now)
+            {
+                bgColor = "bg-danger";
+            }
+            else if (item.Deadline_1 < DateTime.Now)
+            {
+                bgColor = "bg-warning";
+            }
+            <tr class="@bgColor">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline_1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline_2)
+                </td>
+                <td>
+                    <a asp-action="ViewIdeas" asp-route-submissionid="@item.Id" class="btn btn-light">View Ideas</a>
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <a asp-action="ExportZIP" asp-route-submissionid="@item.Id" class="btn btn-light">Export ZIP</a>
+                        <a asp-action="ExportExcel" asp-route-submissionid="@item.Id" class="btn btn-light">Export Excel</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    /* Styling cho bảng */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Styling cho tiêu đề bảng */
+.table thead {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.table thead th {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Styling cho các hàng trong bảng */
+.table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Màu sắc cho các hàng dựa trên điều kiện */
+.bg-success {
+    background-color: #d4edda !important;
+    color: #155724;
+}
+
+.bg-warning {
+    background-color: #fff3cd !important;
+    color: #856404;
+}
+
+.bg-danger {
+    background-color: #f8d7da !important;
+    color: #721c24;
+}
+
+/* Styling cho các ô trong bảng */
+.table td {
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Styling cho các nút */
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-light {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-light:hover {
+    background-color: #e0e0e0;
+    color: #000;
+    border-color: #bbb;
+}
+
+/* Responsive Design */
+
+
+</style>

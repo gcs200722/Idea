@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .image-container {
+        display: flex; /* Sử dụng flexbox để canh giữa */
+        justify-content: center; /* Canh giữa theo chiều ngang */
+        align-items: center; /* Canh giữa theo chiều dọc (nếu có không gian) */
+        height: 576px; /* Chiều cao bằng chiều cao của viewport */
+        
+        background:gray;/* Màu nền (tùy chọn) */
+    }
+
+    .large-image {
+        max-width: 100%; /* Giới hạn kích thước tối đa để không bị bể */
+        height: auto; /* Duy trì tỷ lệ khung hình */
+        width: 1024px; /* Hoặc kích thước cụ thể bạn muốn */
+        object-fit:cover;
+    }
+</style>
+
+<div class="image-container">
+    <img src="https://greenwich.edu.vn/wp-content/uploads/2022/10/Welcome-1-1024x576.jpg" alt="Photo" class="large-image">
+   
+     </div>
+
+
+

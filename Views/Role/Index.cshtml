@@ -1,0 +1,205 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "Role Index";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+    </ol>
+</nav>
+
+<div class="text-center mt-4">
+    <a class="btn btn-create" asp-action="Create">Create New</a>
+</div>
+
+<div class="row table-header mt-5">
+    <div class="col-2">@Html.DisplayNameFor(model => model.Id)</div>
+    <div class="col-2">@Html.DisplayNameFor(model => model.Name)</div>
+    <div class="col-5">Concurrency Stamp</div>
+    <div class="mr-auto"></div>
+</div>
+
+<hr />
+
+@foreach (var item in Model)
+
+{
+    <div class="row table-row">
+        <div class="col-2">
+            @Html.DisplayFor(modelItem => item.Id)
+        </div>
+
+        <div class="col-2">
+            @Html.DisplayFor(modelItem => item.Name)
+        </div>
+
+        <div class="col-5">
+            @Html.DisplayFor(modelItem => item.ConcurrencyStamp)
+        </div>
+
+        <div class="action-buttons d-flex ml-auto pr-2">
+            <div class="mr-2">
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm d-flex align-items-center rounded-0">
+                    <span class='material-icons'>remove</span>
+                </a>
+            </div>
+            <div class="mr-2">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm d-flex align-items-center rounded-0">
+                    <span class="material-icons">edit</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+}
+
+<style>
+    /* Cơ bản cho body */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(145deg, #6c5ce7, #00cec9);
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px 25px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(8px);
+    }
+
+    .breadcrumb-item a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s;
+    }
+
+        .breadcrumb-item a:hover {
+            color: #00cec9;
+        }
+
+    .breadcrumb-item.active {
+        color: #333;
+    }
+
+    /* Button "Create New" */
+    .btn-create {
+        background: linear-gradient(45deg, #00cec9, #6c5ce7);
+        color: white;
+        padding: 14px 30px;
+        font-size: 1.1em;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .btn-create:hover {
+            background-color: #00cec9;
+            transform: translateY(-4px);
+        }
+
+    /* Tiêu đề bảng */
+    .table-header {
+        background: linear-gradient(145deg, #6c5ce7, #8e44ad);
+        color: white;
+        font-weight: bold;
+        padding: 14px 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+        .table-header .col-2,
+        .table-header .col-5 {
+            text-align: center;
+        }
+
+    /* Dòng bảng */
+    .table-row {
+        background: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .table-row:hover {
+            background-color: #f1f2f6;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Các ô trong bảng */
+        .table-row .col-2,
+        .table-row .col-5 {
+            text-align: center;
+            padding: 12px;
+            color: #555;
+        }
+
+    /* Các nút "Edit", "Delete" */
+    .action-buttons .btn {
+        font-size: 1.3em;
+        padding: 8px 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .action-buttons .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Nút "Delete" (màu đỏ) */
+    .btn-danger {
+        background-color: #e74c3c; /* Màu đỏ */
+        color: white;
+        border-radius: 50%;
+    }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: scale(1.1);
+        }
+
+    /* Nút "Edit" (màu cam) */
+    .btn-success {
+        background-color: #f39c12; /* Màu cam */
+        color: white;
+        border-radius: 50%;
+    }
+
+        .btn-success:hover {
+            background-color: #e67e22;
+            transform: scale(1.1);
+        }
+
+    /* Các hiệu ứng cho icon */
+    .material-icons {
+        font-size: 1.7em;
+    }
+
+    /* Các hiệu ứng cho bảng khi hover */
+    .table-row:hover {
+        background-color: #f8f9fa;
+        transform: translateY(-4px);
+    }
+</style>
+

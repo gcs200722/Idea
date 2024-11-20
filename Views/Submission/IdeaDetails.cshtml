@@ -1,0 +1,151 @@
+﻿@model Idea.Models.NIdea
+
+@{
+    ViewData["Title"] = "Details";
+    var Comments = (List<Comment>)ViewData["Comments"];
+}
+
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-primary ">@ViewData["Title"]</h1>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>NIdea Details</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.Title)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.Brief)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Brief)
+                </dd>
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.Content)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Content)
+                </dd>
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.FilePath)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.FilePath)
+                </dd>
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.View)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.View)
+                </dd>
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.Submission)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Submission.Id)
+                </dd>
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.Category)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Category.Id)
+                </dd>
+                <dt class="col-sm-3">
+                    <strong>@Html.DisplayNameFor(model => model.UserId)</strong>
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.UserId)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    @if (Model.Submission.Deadline_2 >= DateTime.Now)
+    {
+        <div class="mt-4">
+            <form class="input-group mb-3" asp-action="Comment">
+                <input type="hidden" name="IdeaId" value="@Model.Id" />
+                <input type="text" class="form-control" placeholder="Add a comment" name="Content" aria-label="Add comment">
+                <button class="btn btn-outline-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    }
+
+    <div class="comments-section mt-4">
+        @foreach (var comment in Comments)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="card-text"><strong>Commented on: </strong><span class="text-muted">(@comment.Created_Date.ToString("g"))</span></p>
+                    <p class="card-text">@comment.Content</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-action="ViewIdeas" asp-route-submissionid="@Model.SubmissionId" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Back to List
+        </a>
+    </div>
+</div>
+
+<style>
+    .card-header {
+        border-radius: 0.25rem 0.25rem 0 0;
+    }
+
+    .card-body {
+        background: #f8f9fa;
+    }
+
+        .card-body .card-text {
+            font-size: 1.1rem;
+        }
+
+    .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff;
+        border-color: #6c757d;
+    }
+
+    .comments-section .card {
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+        max-width: 900px;
+    }
+
+    .breadcrumb {
+        background: none;
+    }
+
+    .breadcrumb-item a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .breadcrumb-item.active {
+        color: #6c757d;
+    }
+
+    h1 {
+        font-weight: bold;
+    }
+</style>
